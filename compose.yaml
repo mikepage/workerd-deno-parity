@@ -1,0 +1,16 @@
+services:
+  # docker compose run --rm workerd
+  workerd:
+    build:
+      context: .
+      dockerfile: Containerfile
+    volumes:
+      - ./:/lab
+
+  # docker compose run --rm deno
+  deno:
+    image: denoland/deno:debian-2.9.8
+    working_dir: /lab
+    volumes:
+      - ./:/lab
+    entrypoint: ["/lab/deno-run.sh"]

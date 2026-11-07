@@ -1,0 +1,15 @@
+version	probe	result	detail
+2.9.8	hello	pass	
+2.9.8	ts-strip	pass	
+2.9.8	jsx	pass	
+2.9.8	tla	pass	
+2.9.8	url-import	pass	
+2.9.8	npm-specifier	pass	
+2.9.8	web-apis	pass	{"score":"40/40","missing":[]}
+2.9.8	node-compat	pass	{"score":"34/34","calls":"5/5","missing":[],"failedCalls":[]}
+2.9.8	import-meta-main	pass	import.meta.main=true
+2.9.8	deny-net	pass	no --allow-net
+2.9.8	sqlite	pass	node:sqlite
+2.9.8	watch	pass	deno run --watch
+2.9.8	test	pass	deno test
+2.9.8	compile	pass	deno compile
