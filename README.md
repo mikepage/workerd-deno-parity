@@ -49,9 +49,9 @@ Raw results: [`results/workerd-20261107-150028.tsv`](results/workerd-20261107-15
 - **2023:** a test runner (`workerd test`). Node compat starts: `buffer`, `crypto`, `events`, `stream`,
   `util`, `async_hooks`.
 - **2024:** SQLite in Durable Objects. `import.meta.main` through the new module registry (experimental).
-  Web APIs catch up: `AbortSignal.any`, `ReadableStream.from`, `EventSource`, `Promise.withResolvers`.
-- **2025:** TypeScript type stripping (experimental). Node jumps to 28/34: `fs`, `http`, `net`, `os`,
-  `dns`, `tls`, `zlib`.
+  Web APIs catch up: `ReadableStream.from`, `EventSource`, `Promise.withResolvers`, `Array.fromAsync`.
+- **2025:** TypeScript type stripping (experimental). Node jumps to 28/34: `fs`, `http`, `https`, `net`,
+  `os`, `dns`, `tls`, `vm`.
 - **2026:** the last six `node:` modules import, `node:sqlite` among them. The only web API still missing
   is `BroadcastChannel`.
 
