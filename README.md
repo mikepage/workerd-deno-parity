@@ -5,14 +5,24 @@ feature probes against one workerd release per year since 2023 and against Deno 
 
 ## Conclusion
 
-Yes for the runtime, no for the toolchain.
+workerd matches Deno's APIs. It doesn't match Deno's module loading, and won't.
 
-workerd went from 4 of 11 Deno features in January 2023 to 8 of 11 now. Web APIs went from 27/40 to 39/40.
-Node built-ins went from 1/34 to 34/34. TypeScript files run as written, and SQLite storage is built in.
+- **APIs: caught up.** 39/40 web APIs (only `BroadcastChannel` missing), 34/34 `node:` modules import, 5/5
+  real Node calls work. Code written to web standards plus `node:` imports runs unchanged on both.
+  Most of it is recent: `node:` went 16 → 28 in 2025 and 28 → 34 in 2026.
+- **Module loading: by design, no.** URL imports, `npm:` specifiers and JSX fail in all five releases.
+  workerd runs a fixed set of modules declared before it starts. Worker Loader, which loads code at runtime,
+  takes finished JavaScript only.
+- **TypeScript: partial and experimental.** Erasable types only, only for modules in `config.capnp`, only with
+  `--experimental`. No enums, JSX or type checking. Deno runs full TypeScript and checks it.
+  Cloudflare's `@cloudflare/worker-bundler` runs esbuild inside a Worker: a build step moved into the runtime.
 
-The three it still fails are by design. workerd only loads modules declared in its config, so it has no
-URL imports, no `npm:` specifiers, and no JSX transform. Deno's formatter, linter, LSP and package
-manager have no workerd counterpart and weren't probed.
+What follows from it:
+
+- Code known at deploy time: target workerd. With web APIs, `node:` and erasable TypeScript it runs on Deno too.
+- Code that loads code it hasn't seen (plugins, user scripts, AI-written apps): Deno, or a bundler in front of
+  Worker Loader.
+- workerd's TypeScript support isn't for production while it needs `--experimental`.
 
 | Feature | 2023-01 | 2023-10 | 2024-11 | 2025-11 | 2026-11 | Deno 2.9.8 |
 |---|---|---|---|---|---|---|
